@@ -1,0 +1,2 @@
+class BookingExtra < ApplicationRecord
+end
