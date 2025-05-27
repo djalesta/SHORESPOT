@@ -1,163 +1,19 @@
+<<<<<<< HEAD
+=======
 #<<<<<<< index
-<div class="container py-2">
-  <div class="row mb-3">
-    <div class="col-12">
-      <div class="p-3 bg-white rounded-3 shadow-sm mx-auto" style="width: 95%; max-width: 1000px;">
-        <label for="date" class="form-label fw-semibold">Date from</label>
-        <input type="date" class="form-control" id="date" name="date">
-      </div>
-    </div>
-  </div>
-</div>
+>>>>>>> master
+<<<<<<< HEAD
+=======
+=======
+<h1>This is a H1</h1>
 
-<div class="container py-4">
-  <div
-    style="
-      background: #3E82EA;
-      color: #fff;
-      text-align: center;
-      padding: 16px 0 12px 0;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      margin-bottom: 0;
-    "
-  >
-    <div class="fw-semibold" style="font-size: 1.12rem;">Welcome to ShoreSpot! 🌊</div>
-    <div style="font-size: 0.97em;">Select your spot from the options below</div>
-  </div>
+<h2>This is a H2</h2>
 
-  <div
-    style="
-      background: #fff;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-      box-shadow: 0 1px 12px 0 rgba(0,0,0,0.07);
-      margin-top: 0;
-      padding: 14px 0 18px 0;
-    "
-  >
-    <div class="umbrella-scroll-wrapper" style="overflow-x: auto; width: 100%;">
-      <div
-        id="umbrella-container"
-        class="d-flex flex-column align-items-start"
-        style="min-width:900px; margin-left: auto; margin-right: auto;"
-      >
-        <% 4.times do |row| %>
-          <div class="d-flex flex-row mb-2">
-            <% 50.times do |col| %>
-              <% index = row * 50 + col %>
-              <% reserved = [3, 7, 13, 21, 33, 55, 70, 82, 99, 101, 112, 121, 134, 151, 163, 188].include?(index) %>
-              <% selectable = !reserved %>
-              <% umbrella_class = reserved ? "bg-danger" : "bg-success" %>
-              <div
-                class="umbrella-box d-flex align-items-center justify-content-center me-1 mb-1 rounded-circle <%= umbrella_class %>"
-                data-selectable="<%= selectable %>"
-                data-row="<%= row + 1 %>"
-                data-col="<%= col + 1 %>"
-                style="width: 28px; height: 28px; cursor: <%= selectable ? 'pointer' : 'not-allowed' %>; border: 2px solid #fff;"
-              >
-                <img src="<%= asset_path('umbrella.png') %>" width="15" height="15" alt="umbrella">
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div id="selected-info" class="text-center fw-semibold mt-3" style="font-size:1.1rem;"></div>
-  </div>
-</div>
+<h3>This is a H3</h3>
 
+<p>Body text</p>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  let selectedBox = null;
-  let info = document.getElementById('selected-info');
-  document.querySelectorAll('.umbrella-box').forEach(box => {
-    if (box.dataset.selectable === "true") {
-      box.addEventListener('click', function() {
-
-        if (this.classList.contains('bg-warning')) {
-          this.classList.remove('bg-warning');
-          this.classList.add('bg-success');
-          info.textContent = "";
-          selectedBox = null;
-        } else {
-
-          document.querySelectorAll('.umbrella-box.bg-warning').forEach(sel => {
-            sel.classList.remove('bg-warning');
-            sel.classList.add('bg-success');
-          });
-
-          this.classList.remove('bg-success');
-          this.classList.add('bg-warning');
-          info.textContent = "Selected: Row " + this.dataset.row + ", Column " + this.dataset.col;
-          selectedBox = this;
-        }
-      });
-    }
-  });
-});
-
-</script>
-
-<style>
-.umbrella-box {
-  font-size: 1.05rem;
-  transition: background 0.2s;
-}
-.bg-warning { background: #FF6C0A!important; color: #fff; }
-.bg-danger  { color: #fff; }
-.bg-success { color: #fff; }
-
-#umbrella-container {
-  padding-left: 8px;
-  padding-right: 8px;
-  min-width: 900px;
-}
-@media (max-width: 1100px) {
-  #umbrella-container { min-width: 650px; }
-  .umbrella-box { width: 20px; height: 20px; }
-  #umbrella-container img { width: 12px; height: 12px; }
-}
-@media (max-width: 700px) {
-  #umbrella-container { min-width: 350px; }
-  .umbrella-box { width: 14px; height: 14px; }
-  #umbrella-container img { width: 9px; height: 9px; }
-}
-</style>
-
-<div class="text-center mb-3">
-    <button id="pick-btn" class="btn px-5 py-3 rounded-pill" style="background:#F37515; color:white; border:none;">Pick</button>
-  </div>
-  <br>
-  <br>
-<div class="text-center my-3">
-  <button type="submit"
-    class="btn"
-    style="background: #3E82EA; color: white; border: none; width: 80%; font-size: 1.2rem; padding: 0.75rem 0; border-radius: 1rem;">
-    Log in
-  </button>
-</div>
-<br>
-<div class="text-center my-4" style="width: 100%;">
-  <span style="color: #757F8C; font-weight: 500; font-size: 1.1rem;">or </span>
-  <a href="/sign_up" style="color: #FF6C0A; font-weight: 700; text-decoration: none; font-size: 1.1rem;">
-    Signup
-  </a>
-</div>
-#=======
-#<h1>This is a H1</h1>
-
-#<h2>This is a H2</h2>
-
-#<h3>This is a H3</h3>
-
-#<p>Body text</p>
-
-#<%= link_to "primarybutton", "#", class:"primarybuttonblue" %>
-#<%= link_to "secondarybuttonorange", "#", class: "secondarybuttonorange" %>
-#>>>>>>> master
+<%= link_to "primarybutton", "#", class:"primarybuttonblue" %>
+<%= link_to "secondarybuttonorange", "#", class: "secondarybuttonorange" %>
+>>>>>>> master
+>>>>>>> master
