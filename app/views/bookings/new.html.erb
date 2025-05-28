@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>Hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (10..20).each do |hour| %>
+      <tr>
+        <td><%= "%02d:00" % hour %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<button class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>>Book</button>
