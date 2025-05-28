@@ -1,0 +1,18 @@
+<div class="container py-2">
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="p-3 bg-white rounded-3 shadow-sm mx-auto" style="width: 95%; max-width: 1000px;">
+        <label for="date" class="form-label fw-semibold">Date</label>
+        <input type="date" class="form-control" id="date" name="date">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center mb-4">
+  <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", class: "img-fluid custom-rounded w-75" %>
+</div>
+
+<h3><%=@listing.description%></h3>
+<p>$<%=@listing.price_per_hour%> per hour </p>
