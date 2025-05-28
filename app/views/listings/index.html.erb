@@ -54,10 +54,12 @@
 </div>
 
 <div class="text-center my-3">
-  <%= link_to "Log in", new_user_registration_path, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+  <% if user_signed_in? %>
+  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+  <% else %>
+  <%= link_to "Log in", new_user_session_path, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+  <% end %>
 </div>
-
-
 
 <div class="text-center my-4">
   <span class="text-muted fs-5 fw-medium">or </span>
