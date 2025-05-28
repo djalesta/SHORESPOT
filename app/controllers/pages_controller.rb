@@ -1,3 +1,9 @@
 class PagesController < ApplicationController
+#   def home
+#   end
+
+  def listings
+  end
+
 end
-# We are not going to use this on this project
+# We are not going to use home on this project
