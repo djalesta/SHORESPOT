@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def new
+    @listing = Listing.find(params[:listing_id])
     @booking = Booking.new
   end
 
@@ -9,14 +10,21 @@ class BookingsController < ApplicationController
 
   def create
     @listing = Listing.find(params[:listing_id])
-    @booking = Booking.new(params)
+    @booking = @listing.booking.build(booking_params)
+
     if @booking.save
-      redirect_to bookings_index(@booking)
+      redirect_to @listing, notice: "Booking created!"
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
+
+    # def destroy
+    # end
   end
 
-  def destroy
+  private
+
+  def set_listing
+  @listing = Listing.find(params[:listing_id])
   end
 end

@@ -1,20 +1,8 @@
 <%= simple_form_for [@listing, @booking] do |f| %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Select Hour</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <%= f.input :hour, collection: (10..20).map { |h| "#{h}:00" }, label: false, input_html: { class: "form-control" } %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <%= f.input :date, as: :string, input_html: { value: Date.today, readonly: true } %>
 
-  <%= f.submit "Book Spot", class: "btn btn-primary mt-2"%>
+  <%= f.input :start_hour, collection: (10..20).to_a, prompt: 'Select starting hour' %>
+  <%= f.input :duration, collection: (1..5).to_a, prompt: 'Select duration' %>
+
+  <%= f.button :submit, "Book spot", class: "primarybuttonblue" %>
 <% end %>
-
-<%# <%= link_to "Book!", "#", class:"primarybuttonblue" %> %>
