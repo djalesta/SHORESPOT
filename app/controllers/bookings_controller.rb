@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @listing = Listing.find(params[:listing_id])
     @booking = Booking.new(params)
     if @booking.save
       redirect_to bookings_index(@booking)
