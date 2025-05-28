@@ -1,9 +1,6 @@
 class ListingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
-  before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:index]
-  # skip_before_action :authenticate_user!, only: [:index, :show]
-  
   def index
     # örnek: @listings = Listing.all
   end
@@ -11,6 +8,4 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
   end
-
-
 end
