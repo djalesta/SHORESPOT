@@ -12,7 +12,7 @@ export default class extends Controller {
 
     const isAlreadySelected = box.classList.contains("bg-warning")
 
-    // Önce tüm seçili kutuları sıfırla
+
     document.querySelectorAll(".umbrella-box.bg-warning").forEach(el => {
       el.classList.remove("bg-warning")
       el.classList.add("bg-success")

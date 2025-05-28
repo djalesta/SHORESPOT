@@ -4,7 +4,7 @@
     <div class="col-12">
       <div class="p-3 bg-white rounded-3 shadow-sm mx-auto" style="width: 95%; max-width: 1000px;">
         <label for="date" class="form-label fw-semibold">Date from</label>
-        <input type="date" class="form-control" id="date" name="date">
+        <input type="date" class="form-control" id="date" name="date" data-controller="date" value="<%= @date.strftime('%Y-%m-%d') %>">
       </div>
     </div>
   </div>
@@ -22,26 +22,27 @@
     <div class="umbrella-scroll-wrapper">
       <div id="umbrella-container" class="d-flex flex-column align-items-start" data-controller="selection">
         <% 4.times do |row| %>
-          <div class="d-flex flex-row mb-2">
-            <% 50.times do |col| %>
-              <% index = row * 50 + col %>
-              <% reserved = [3, 7, 13, 21, 33, 55, 70, 82, 99, 101, 112, 121, 134, 151, 163, 188].include?(index) %>
-              <% selectable = !reserved %>
-              <% umbrella_class = reserved ? "bg-danger" : "bg-success" %>
-              <div
-                class="umbrella-box d-flex align-items-center justify-content-center me-1 mb-1 rounded-circle <%= umbrella_class %>"
-                data-controller="selection"
-                data-selectable="<%= selectable %>"
-                data-row="<%= row + 1 %>"
-                data-col="<%= col + 1 %>"
-                data-action="click->selection#toggle"
-                style="border: 2px solid #fff;"
-                >
-                <%= image_tag 'umbrella.png', width: 15, height: 15, alt: 'umbrella' %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+  <div class="d-flex flex-row mb-2">
+    <% 50.times do |col| %>
+      <% spot = @listings.find { |l| l.spot_row == row + 1 && l.spot_column == col + 1 } %>
+      <% reserved = spot.present? %>
+      <% umbrella_class = reserved ? "bg-danger" : "bg-success" %>
+      <% selectable = !reserved %>
+
+      <div
+        class="umbrella-box d-flex align-items-center justify-content-center me-1 mb-1 rounded-circle <%= umbrella_class %>"
+        data-controller="selection"
+        data-selectable="<%= selectable %>"
+        data-row="<%= row + 1 %>"
+        data-col="<%= col + 1 %>"
+        data-action="click->selection#toggle"
+        style="border: 2px solid #fff;">
+        <%= image_tag 'umbrella.png', width: 15, height: 15, alt: 'umbrella' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
       </div>
     </div>
     <div id="selected-info" class="text-center fw-semibold mt-3 fs-5"></div>
