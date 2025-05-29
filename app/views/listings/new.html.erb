@@ -1,7 +1,7 @@
 <%= simple_form_for @listing do |f| %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :price_per_hour, label: "Price per Hour ($)", input_html: { type: :number, min: 0 } %>
-  <%= f.input :spot_column, label: "Spot Column", input_html: { type: :number, min: 0 } %>
-  <%= f.input :spot_row, label: "Spot Row", input_html: { type: :number, min: 0 } %>
+  <%= f.input :description, as: :text, placeholder: "Enter a brief description..." %>
+  <%= f.input :price_per_hour, label: "Price per Hour ($)", input_html: { type: :number, min: 0 }, placeholder: "Enter the price per hour..." %>
+  <%= f.input :spot_column, label: "Spot Column", input_html: { type: :number, min: 0 }, placeholder: "Enter a number between 1 - 50" %>
+  <%= f.input :spot_row, label: "Spot Row", input_html: { type: :number, min: 0 }, placeholder: "Enter a number between 1 - 4" %>
   <%= f.submit "Create Listing" %>
 <% end %>
