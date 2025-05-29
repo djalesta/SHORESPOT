@@ -15,8 +15,11 @@ class ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.build(listing_params) # Associate the listing with the logged-in user
-    @listing.save!
-    redirect_to listings_path
+    if @listing.save
+      redirect_to listings_path, notice: "Listing was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
