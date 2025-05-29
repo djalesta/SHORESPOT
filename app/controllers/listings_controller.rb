@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
   def create
     @listing = current_user.listings.build(listing_params) # Associate the listing with the logged-in user
     if @listing.save
-      redirect_to listings_path, notice: "Listing was successfully created."
+      redirect_to seller_listings_path, notice: "Listing was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,6 +27,20 @@ class ListingsController < ApplicationController
     # Listing.all where Listing.user_id ==
   end
 
+
+  def edit
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    if @listing.update(listing_params)
+      redirect_to seller_listings_path, notice: "Listing successfully updated!"
+    else
+      flash[:alert] = "Error: Unable to update listing."
+      render :edit
+    end
+  end
 
   private
 
