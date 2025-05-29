@@ -3,5 +3,3 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
-import DateController from "./controllers/date_controller"
-application.register("date", DateController)
