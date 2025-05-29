@@ -1,16 +1,17 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :listing
-  attr_accessor :start_hour, :duration
+  has_many :booking_extras
+  attr_accessor :start_hour, :duration, :date
 
   validate :validate_booking_hours
 
-  def validate_booking_hours
+   def validate_booking_hours
   if start_hour.nil? || duration.nil?
     return
   end
 
-  if duration > 5
+  if duration.to_i > 5
     errors.add(:duration, "You can only book for a maximum of 5 hours!")
   end
 
@@ -27,8 +28,12 @@ class Booking < ApplicationRecord
     return
   end
 
-  if sh + dur > 21
+  if start_hour_integer +  duration_integer > 21
     errors.add(:base, "Booking must end no later than 21:00")
+    end
   end
+
+  def total_price
+    listing.price_per_hour * duration.to_i
   end
 end

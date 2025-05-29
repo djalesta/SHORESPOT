@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'extras/new'
 
   devise_for :users
 
   root to: "listings#index"
   resources :listings do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :index]
+    resources :extras, only: [:new]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
