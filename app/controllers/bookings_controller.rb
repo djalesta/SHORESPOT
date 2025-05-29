@@ -13,9 +13,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-@listing = Listing.find(params[:listing_id])
-    @booking = @listing.bookings.new(booking_params)
-    @booking.price = @booking.total_price
+  @listing = Listing.find(params[:listing_id])
+  @booking = @listing.bookings.new(booking_params)
+  @booking.price = @booking.total_price
 
   selected_date = Date.parse(params[:booking][:date])
   selected_hour = params[:booking][:start_hour].to_i

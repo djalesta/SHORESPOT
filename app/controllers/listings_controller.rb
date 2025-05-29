@@ -8,4 +8,30 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
   end
+
+  def new
+    @listing = Listing.new
+  end
+
+  def create
+    @listing = current_user.listings.build(listing_params) # Associate the listing with the logged-in user
+    if @listing.save
+      redirect_to listings_path, notice: "Listing was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def sellerlistings
+    @listings = current_user.listings
+    # Listing.all where Listing.user_id ==
+  end
+
+
+  private
+
+  def listing_params
+    params.require(:listing).permit(:description, :price_per_hour, :spot_column, :spot_row)
+  end
+
 end
