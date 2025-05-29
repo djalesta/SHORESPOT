@@ -22,6 +22,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def sellerlistings
+    @listings = current_user.listings
+    # Listing.all where Listing.user_id ==
+  end
+
+
   private
 
   def listing_params
