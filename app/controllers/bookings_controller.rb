@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
   @booking.start_date = DateTime.new(selected_date.year, selected_date.month, selected_date.day, selected_hour, 0, 0)
   @booking.end_date = @booking.start_date + params[:booking][:duration].to_i.hours
   @booking.user_id = current_user.id
-  
+
     if @booking.save
       @booking.update(status: "confirmed")
       redirect_to listing_bookings_path(@listing), notice: "Booking created!"
@@ -31,6 +31,10 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+  Booking.destroy
+  end
+  
   private
 
   def set_listing
