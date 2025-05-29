@@ -1,3 +1,5 @@
+  Rails.application.routes.draw do
+
   get 'extras/new'
 
   devise_for :users
