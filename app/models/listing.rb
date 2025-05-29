@@ -1,6 +1,5 @@
 class Listing < ApplicationRecord
   belongs_to :user
-  has_many_attached :images
   has_many :bookings
   validates :spot_row, :spot_column, presence: true
   validates :spot_row, uniqueness: { scope: :spot_column }

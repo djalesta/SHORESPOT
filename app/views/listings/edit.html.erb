@@ -1,0 +1,12 @@
+<h1>Edit Listing</h1>
+<%# # Knows whether it is patch or post because it can tell wheter @listing already has an id assinged to it %>
+<%= simple_form_for @listing do |f| %>
+  <%= f.input :description %>
+  <%= f.input :price_per_hour, label: "Price per hour ($)" %>
+  <%= f.input :spot_column, label: "Column number" %>
+  <%= f.input :spot_row, label: "Row number" %>
+
+  <%= f.submit "Update Listing", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Cancel", listing_path(@listing), class: "mt-2 btn btn-secondary" %>
