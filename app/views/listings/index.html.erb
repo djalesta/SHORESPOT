@@ -1,42 +1,48 @@
-
 <div class="container py-2">
   <div class="row mb-3">
     <div class="col-12">
       <div class="p-3 bg-white rounded-3 shadow-sm mx-auto" style="width: 95%; max-width: 1000px;">
         <label for="date" class="form-label fw-semibold">Date from</label>
-        <input type="date" class="form-control" id="date" name="date">
+        <%= form_with url: listings_path, method: :get, local: true do %>
+        <div class="d-flex gap-2 align-items-center">
+        <input type="date" name="date" class="form-control" value="<%= @date.strftime('%Y-%m-%d') %>">
+        <%= submit_tag "Select", class: "primarybuttonblue" %>
+        </div>
+        <% end %>
+
+
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="container py-4">
-  <div class="umbrella-header text-center text-white py-3">
-    <div class="fw-semibold fs-5">Welcome to ShoreSpot! 🌊</div>
-    <div class="fs-6">Select your spot from the options below</div>
-  </div>
+<div class="umbrella-header text-center text-white py-3" style="background-image: url('<%= asset_path("ocean.jpg") %>'); background-size: cover; background-position: center;">
+  <div class="fw-semibold fs-5">Welcome to ShoreSpot! </div>
+  <div class="fs-6">Select your spot from the options below</div>
+</div>
 
 
-  <div class="umbrella-body">
+  <div class="umbrella-body" data-controller="selection">
     <div class="umbrella-scroll-wrapper">
-      <div id="umbrella-container" class="d-flex flex-column align-items-start" data-controller="selection">
+      <div id="umbrella-container" class="d-flex flex-column align-items-start">
         <% 4.times do |row| %>
           <div class="d-flex flex-row mb-2">
             <% 50.times do |col| %>
-              <% index = row * 50 + col %>
-              <% reserved = [3, 7, 13, 21, 33, 55, 70, 82, 99, 101, 112, 121, 134, 151, 163, 188].include?(index) %>
-              <% selectable = !reserved %>
-              <% umbrella_class = reserved ? "bg-danger" : "bg-success" %>
+              <% spot = @listings.find { |l| l.spot_row == row + 1 && l.spot_column == col + 1 } %>
+              <% reserved = spot.present? %>
+              <% umbrella_class = reserved ? "bg-success" : "bg-secondary" %>
+              <% selectable = reserved %>
+
+
               <div
                 class="umbrella-box d-flex align-items-center justify-content-center me-1 mb-1 rounded-circle <%= umbrella_class %>"
-                data-controller="selection"
                 data-selectable="<%= selectable %>"
                 data-row="<%= row + 1 %>"
                 data-col="<%= col + 1 %>"
                 data-action="click->selection#toggle"
-                style="border: 2px solid #fff;"
-                >
+                <% if reserved %>data-listing-id="<%= spot.id %>"<% end %>
+
+                style="border: 2px solid #fff;">
                 <%= image_tag 'umbrella.png', width: 15, height: 15, alt: 'umbrella' %>
               </div>
             <% end %>
@@ -44,24 +50,25 @@
         <% end %>
       </div>
     </div>
+
     <div id="selected-info" class="text-center fw-semibold mt-3 fs-5"></div>
+
+    <div class="text-center mb-3">
+      <%= link_to "Pick", "#", class: "secondarybuttonorange", data: { action: "click->selection#pick" } %>
+    </div>
+
   </div>
-</div>
-
-
-<div class="text-center mb-3">
-  <button id="pick-btn" class="btn px-5 py-3 rounded-pill" style="background:#F37515; color:white; border:none;">Pick</button>
 </div>
 
 <div class="text-center my-3">
   <% if user_signed_in? %>
   <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
   <% else %>
-  <%= link_to "Log in", new_user_session_path, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+   <%= link_to "Log in", new_user_session_path, class: "primarybuttonblue" %>
   <% end %>
 </div>
 
 <div class="text-center my-4">
   <span class="text-muted fs-5 fw-medium">or </span>
-  <%= link_to "Signup", new_user_registration_path, class: "text-decoration-none fs-5 fw-bold", style: "color: #FF6C0A;" %>
+ <%= link_to "Signup", new_user_registration_path, class: "text-decoration-none fs-5 fw-bold", style: "color: #F37515;" %>
 </div>
