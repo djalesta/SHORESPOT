@@ -1,5 +1,5 @@
 <%= simple_form_for [@listing, @booking] do |f| %>
-  <%= f.input :date, as: :string, input_html: { type: "date", class: "form-control", min: Date.today } %>
+  <%= f.input :date, as: :string, input_html: {type: "date", class: "form-control",min: Date.today, value: params[:date] || Date.today.strftime("%Y-%m-%d")} %>
 
   <%= f.input :start_hour, collection: ([Time.now.hour, 10].max..20).map { |h| ["#{h}:00", h] }, prompt: 'Select starting time for booking' %>
 
@@ -7,4 +7,3 @@
 
   <%= f.button :submit, "Book spot", class: "primarybuttonblue" %>
 <% end %>
-<%= link_to "Go Back", request.referer || root_path %>

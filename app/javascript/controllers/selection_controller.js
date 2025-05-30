@@ -23,11 +23,14 @@ export default class extends Controller {
   }
 
   pick() {
-    if (!this.selectedBox) return
+  if (!this.selectedBox) return;
 
-    const listingId = this.selectedBox.dataset.listingId
-    if (listingId) {
-      window.location.href = `/listings/${listingId}`
-    } 
+  const listingId = this.selectedBox.dataset.listingId;
+  const date = document.getElementById("selected-date").value;
+
+  if (listingId && date) {
+    window.location.href = `/listings/${listingId}?date=${date}`;
   }
+}
+    
 }
