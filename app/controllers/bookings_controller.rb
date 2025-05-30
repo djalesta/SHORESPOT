@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = Booking.current_user
+    @bookings = current_user.bookings
   end
 
   def show
