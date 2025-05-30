@@ -1,0 +1,21 @@
+<div style="text-align: center;">
+  <h2>Your bookings:</h2>
+</div>
+
+<% @bookings.each do |booking| %>
+
+<div class="text-center border border-primary rounded mt-4 mb-4 p-4">
+<div class="text-center p-2 mb-2">
+  <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", style: "width: 20%; height: auto;", class: "img-fluid custom-rounded w-80" %>
+</div>
+  <%# <h3 class="mb-4">Description: <%= listing.description %></h3>
+  <p class="p-2">Total price: $<%= booking.price %></p>
+  <p>Booked <%= booking.start_date.strftime("%Y-%m-%d") %> from <%= booking.start_date.strftime("%H:%M") %> to <%= booking.end_date.strftime("%H:%M") %></p>
+  <p>Status: <%= booking.status.capitalize %></p>
+  <button id="pick-btn" class="btn px-5 py-3 rounded-pill" style="background:#F37515; color:white; border:none;">Cancel</button>
+</div>
+
+</div>
+
+<%end%>
+<%= link_to "Book more", root_path, class: "primarybuttonblue" %>
