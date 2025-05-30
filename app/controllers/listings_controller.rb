@@ -2,7 +2,17 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # örnek: @listings = Listing.all
+    if params[:date].present?
+      @date = Date.parse(params[:date])
+    else
+      @date = Date.today
+    end
+
+    bookings_on_date = Booking.where("? BETWEEN DATE(start_date) AND DATE(end_date)", @date)
+
+    booked_ids = bookings_on_date.map(&:listing_id)
+
+    @listings = Listing.where.not(id: booked_ids)
   end
 
   def show
