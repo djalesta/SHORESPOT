@@ -16,8 +16,11 @@ class BookingsController < ApplicationController
   @listing = Listing.find(params[:listing_id])
   @booking = @listing.bookings.new(booking_params)
   @booking.price = @booking.total_price
+  
+  @selected_date = params[:date]
 
   selected_date = Date.parse(params[:booking][:date])
+
   selected_hour = params[:booking][:start_hour].to_i
   @booking.start_date = DateTime.new(selected_date.year, selected_date.month, selected_date.day, selected_hour, 0, 0)
   @booking.end_date = @booking.start_date + params[:booking][:duration].to_i.hours
@@ -34,7 +37,7 @@ class BookingsController < ApplicationController
   def destroy
   Booking.destroy
   end
-  
+
   private
 
   def set_listing

@@ -1,14 +1,19 @@
-<% @listings.each do |listing| %>
+<% if @listings.any? %>
+  <% @listings.each do |listing| %>
+  <div class="text-center p-2 mb-2">
+    <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", class: "img-fluid custom-rounded w-80" %>
+  </div>
 
-<div class="text-center p-2 mb-2">
-  <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", class: "img-fluid custom-rounded w-80" %>
-</div>
+  <div class="text-center border border-primary rounded mt-4 mb-4 p-4">
+    <h3 class="mb-4">Description: <%= listing.description %></h3>
+    <h2 class="p-2">$<%= listing.price_per_hour %> per hour</h2>
+    <%= link_to "Edit", edit_listing_path(listing), class: "btn btn-primary" %>
+  </div>
+  <% end %>
+  <%= link_to "Upload a Listing", new_listing_path, class: "primarybuttonblue" %>
 
-<div class="text-center border border-primary rounded mt-4 mb-4 p-4">
-  <h3 class="mb-4">Description: <%= listing.description %></h3>
-  <h2 class="p-2">$<%= listing.price_per_hour %> per hour</h2>
-  <%= link_to "Edit", edit_listing_path(listing), class: "btn btn-primary" %>
-</div>
+  <% else %>
+  <p class="alert alert-warning">You have not uploaded any listings yet. Please upload a listing to start scamming tourists!!</p>
+  <%= link_to "Upload a Listing", new_listing_path, class: "primarybuttonblue" %>
 
 <% end %>
-
