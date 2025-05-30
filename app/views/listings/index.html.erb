@@ -28,8 +28,7 @@
   <div class="fs-6">Select your spot from the options below</div>
 </div>
 
-
-  <div class="umbrella-body" data-controller="selection">
+  <div class="umbrella-body" style= "background-color: #FFF6E3;"  data-controller="selection">
     <div class="umbrella-scroll-wrapper">
       <div id="umbrella-container" class="d-flex flex-column align-items-start">
         <% 4.times do |row| %>
@@ -39,7 +38,6 @@
               <% reserved = spot.present? %>
               <% umbrella_class = reserved ? "bg-success" : "bg-secondary" %>
               <% selectable = reserved %>
-
 
               <div
                 class="umbrella-box d-flex align-items-center justify-content-center me-1 mb-1 rounded-circle <%= umbrella_class %>"
