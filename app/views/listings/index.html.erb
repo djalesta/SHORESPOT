@@ -4,17 +4,24 @@
       <div class="p-3 bg-white rounded-3 shadow-sm mx-auto" style="width: 95%; max-width: 1000px;">
         <label for="date" class="form-label fw-semibold">Date from</label>
         <%= form_with url: listings_path, method: :get, local: true do %>
-        <div class="d-flex gap-2 align-items-center">
-        <input type="date" name="date" id="selected-date" class="form-control" value="<%= @date.strftime('%Y-%m-%d') %>">
-        <%= submit_tag "Select", class: "primarybuttonblue" %>
-        </div>
+          <div class="d-flex gap-2 align-items-center">
+            <input type="date" name="date" id="selected-date" class="form-control" value="<%= @date.strftime('%Y-%m-%d') %>">
+          </div>
         <% end %>
-
-
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dateInput = document.getElementById("selected-date")
+    dateInput.addEventListener("change", () => {
+      const newDate = dateInput.value
+      window.location.href = `/listings?date=${newDate}`
+    })
+  })
+</script>
 
 <div class="umbrella-header text-center text-white py-3" style="background-image: url('<%= asset_path("ocean.jpg") %>'); background-size: cover; background-position: center;">
   <div class="fw-semibold fs-5">Welcome to ShoreSpot! </div>
@@ -62,7 +69,7 @@
 
 <div class="text-center my-3">
   <% if user_signed_in? %>
-  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn primarybuttonblue" %>
   <% else %>
    <%= link_to "Log in", new_user_session_path, class: "primarybuttonblue" %>
   <% end %>
