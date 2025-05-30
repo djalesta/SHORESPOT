@@ -1,0 +1,31 @@
+<h2 class="mb-4">Bookings for my listing</h2>
+
+  <% @bookings.each do |booking| %>
+
+<div class="text-center p-2 mb-2">
+  <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", class: "img-fluid custom-rounded w-80" %>
+</div>
+
+<div class="text-center border border-primary rounded mt-4 mb-4 p-4">
+  <h3 class="mb-4">Booking Details:</h3>
+
+  <p class="mb-4">
+    <strong>Start Date & Time:</strong>
+    <span class="fw-bold text-primary"><%= booking.start_date.strftime("%A, %d %b %Y at %I:%M %p") %></span>
+  </p>
+
+  <p class="mb-4">
+    <strong>End Date & Time:</strong>
+    <span class="fw-bold text-danger"><%= booking.end_date.strftime("%A, %d %b %Y at %I:%M %p") %></span>
+  </p>
+
+  <p class="mb-4">
+    <strong>Status:</strong>
+    <span class="text-decoration-underline"><%= booking.status.capitalize %></span>
+  </p>
+
+   <%= link_to "Back to all listings", seller_listings_path, class: "btn btn-primary" %>
+
+</div>
+
+  <% end %>

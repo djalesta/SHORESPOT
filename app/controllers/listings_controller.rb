@@ -37,6 +37,11 @@ class ListingsController < ApplicationController
     # Listing.all where Listing.user_id ==
   end
 
+  def listingsbookings
+    @listings = current_user.listings
+    @bookings = Booking.where(listing_id: current_user.listing_ids)
+    @listings_bookings = current_user.listings.joins(:bookings).distinct
+  end
 
   def edit
     @listing = Listing.find(params[:id])
