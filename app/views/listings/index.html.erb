@@ -6,7 +6,7 @@
         <%= form_with url: listings_path, method: :get, local: true do %>
         <div class="d-flex gap-2 align-items-center">
         <input type="date" name="date" class="form-control" value="<%= @date.strftime('%Y-%m-%d') %>">
-        <%= submit_tag "Select", class: "btn", style: "background: #3E82EA; color: white; border: none;" %>
+        <%= submit_tag "Select", class: "primarybuttonblue" %>
         </div>
         <% end %>
 
@@ -16,11 +16,11 @@
   </div>
 </div>
 
-<div class="container py-4">
-  <div class="umbrella-header text-center text-white py-3">
-    <div class="fw-semibold fs-5">Welcome to ShoreSpot! 🌊</div>
-    <div class="fs-6">Select your spot from the options below</div>
-  </div>
+<div class="umbrella-header text-center text-white py-3" style="background-image: url('<%= asset_path("ocean.jpg") %>'); background-size: cover; background-position: center;">
+  <div class="fw-semibold fs-5">Welcome to ShoreSpot! </div>
+  <div class="fs-6">Select your spot from the options below</div>
+</div>
+
 
   <div class="umbrella-body" data-controller="selection">
     <div class="umbrella-scroll-wrapper">
@@ -54,18 +54,18 @@
     <div id="selected-info" class="text-center fw-semibold mt-3 fs-5"></div>
 
     <div class="text-center mb-3">
-      <button id="pick-btn" class="btn px-5 py-3 rounded-pill" data-action="click->selection#pick" style="background:#F37515; color:white; border:none;">
-        Pick
-      </button>
+      <%= link_to "Pick", "#", class: "secondarybuttonorange", data: { action: "click->selection#pick" } %>
     </div>
+
   </div>
 </div>
 
 <div class="text-center my-3">
-  <%= link_to "Log in", new_user_registration_path, class: "btn", style: "background: #3E82EA; color: white; border: none; width: 80%; font-size: 19px; padding: 12px 0; border-radius: 16px;" %>
+  <%= link_to "Log in", new_user_session_path, class: "primarybuttonblue" %>
 </div>
+
 
 <div class="text-center my-4">
   <span class="text-muted fs-5 fw-medium">or </span>
-  <%= link_to "Signup", new_user_registration_path, class: "text-decoration-none fs-5 fw-bold", style: "color: #FF6C0A;" %>
+ <%= link_to "Signup", new_user_registration_path, class: "text-decoration-none fs-5 fw-bold", style: "color: #F37515;" %>
 </div>
