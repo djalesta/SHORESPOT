@@ -1,4 +1,5 @@
 <% if @listings.any? %>
+  <h2>All my Listings:</h2>
   <% @listings.each do |listing| %>
   <div class="text-center p-2 mb-2">
     <%= image_tag "beach-img.jpg", alt: "An image of the spot on the beach", class: "img-fluid custom-rounded w-80" %>
@@ -8,9 +9,12 @@
     <h3 class="mb-4">Description: <%= listing.description %></h3>
     <h2 class="p-2">$<%= listing.price_per_hour %> per hour</h2>
     <%= link_to "Edit", edit_listing_path(listing), class: "btn btn-primary" %>
+    <%= link_to "View bookings for this listing", listings_bookings_path(listing), class: "btn btn-primary" %>
   </div>
   <% end %>
+
   <%= link_to "Upload a Listing", new_listing_path, class: "primarybuttonblue" %>
+
 
   <% else %>
   <p class="alert alert-warning">You have not uploaded any listings yet. Please upload a listing to start scamming tourists!!</p>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   get "sellerlistings", to: "listings#sellerlistings", as: :seller_listings
+  get "listingsbookings", to: "listings#listingsbookings", as: :listings_bookings
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
