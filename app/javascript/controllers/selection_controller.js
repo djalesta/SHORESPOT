@@ -26,8 +26,10 @@ export default class extends Controller {
     if (!this.selectedBox) return
 
     const listingId = this.selectedBox.dataset.listingId
-    if (listingId) {
-      window.location.href = `/listings/${listingId}`
-    } 
+    const date = document.getElementById("selected-date")?.value
+
+    if (listingId && date) {
+      window.location.href = `/listings/${listingId}?date=${date}`
+    }
   }
 }

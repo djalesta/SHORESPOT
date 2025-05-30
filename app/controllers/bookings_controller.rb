@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
   def show
@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
   @listing = Listing.find(params[:listing_id])
   @booking = @listing.bookings.new(booking_params)
   @booking.price = @booking.total_price
-  
+
   @selected_date = params[:date]
 
   selected_date = Date.parse(params[:booking][:date])
